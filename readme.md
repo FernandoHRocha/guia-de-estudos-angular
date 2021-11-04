@@ -131,7 +131,7 @@ No código é utilizado o decorador @Input para declarar uma entrada de dados, p
 A utilização do decorador com parâmetro **@Input('master')** renomeia a entrada de dados para ser utilizada pelo componente pai.
 
 #### Passando Parâmetros do Componente Pai
-Para passar os parâmetros definidos anteriormente no componente filho, faz-se como em uma [vinculação de sentido único](###one-way-data-binding). Não é necessário nenhuma importação adicional por parte do componente pai.
+Para passar os parâmetros definidos anteriormente no componente filho, faz-se como em uma [vinculação de sentido único](#one-way-data-binding). Não é necessário nenhuma importação adicional por parte do componente pai.
 ```typescript
 import { Component } from '@angular/core';
 
@@ -200,7 +200,7 @@ export class VoterComponent {
 ```
 
 ### Configurando o Componente Pai
-O componente pai define a propriedade **name** do componente filho utilizando *[name]=voter*, e na linha seguinte (assim como em [Vínculo de Eventos](###Event-Biding)), o evento *(voted)* do componente filho realizará a chamada do evento *onVoted()* do componente pai, passando os argumentos do evento com *$event*.
+O componente pai define a propriedade **name** do componente filho utilizando *[name]=voter*, e na linha seguinte (assim como em [Vínculo de Eventos](#event-biding)), o evento *(voted)* do componente filho realizará a chamada do evento *onVoted()* do componente pai, passando os argumentos do evento com *$event*.
 
 ```typescript
 import { Component } from '@angular/core';
