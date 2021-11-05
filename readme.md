@@ -1,24 +1,17 @@
-# Estudos de angular e docker
-## Introdução
+# Estudos em angular
 
-Neste projeto, para subir o projeto angular em um container do docker, é utilizada a composição de containers por meio do docker-compose.
-
-Nota-se a presença de um arquivo docker-compose.yml para a composição do nosso container, e o arquivo Dockerfile, necessário para instruir a criação das imagens a serem criadas a partir do projeto angular utilizando uma imagem do nodejs e do iginx.
-
-# Execução do projeto
-
-1 - Abrir o terminal na pasta estudo-angular-a;
-
-2 - Executar o compando __docker-compose up -d__;
-
-O comando irá:
-- Criar um container para execução;
-- Instalar as dependências;
-- Realizar o build da aplicação;
-- Criar um projeto nginx com o build do passo anterior;
-- Expor a porta 80 para acessar a aplicação via navegador.
-
-# Angular
+## Operações comuns ao HTML
+### Encontrar elemento no DOM
+[Documentação Mozilla](https://developer.mozilla.org/pt-BR/docs/Web/API/Document/getElementById)
+Para retornar um elemento contido no DOM:
+```typescript
+const elemento = document.getElementById('id_no_html')
+const elemento = document.getElementByClassName('nome_da_classe')
+const elemento = document.getElementByName('nome_do_html')
+const elemento = document.getElementByTagName('nome_da_tag')
+```
+### Evento HTML do DOM
+[Documentação w3schools](https://www.w3schools.com/jsref/dom_obj_event.asp)
 
 ## Criações
 A criação de elementos dentro do angular acontece por comandos no terminal.
@@ -40,11 +33,35 @@ __ng g services diretorio/do/componente__
 __ng g s__
 
 ## Exportação de módulos
-
-É possível exportar um módulo inteiro através de um arquivo typescript com a seguinte linha de código:
+É possível exportar um ou mais módulos (componentes, diretivas e/ou pipes) através de um arquivo typescript com a seguinte linha de código:
 __export * from './diretório/do/módulo';__
 
 Dentro do arquivo **app.modulo.ts** basta importar o módulo pelo caminho do arquivo criado no passo anterior.
+
+## Importações
+### Evitando Import Hell
+Em arquivos que se encontram dentro de várias pastas é comum a importação de algum arquivo mais próximo da raiz do projeto, sendo assim a imoprtação ficaria sendo algo parecido com:
+```typescript
+import { ClienteModel } from '../../../../../../shared/models/cliente'
+```
+Para evitar a importação de um path confuso como o demonstrado, podemos realizar a configuração de um path padrão, assim como é utilizado para importar um Component ou um Router padrões do Angular.
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
+```
+Para configurar o caminho padrão de importação é necessário configurar o arquivo tsconfig.json. Dentro de **CompilerOptions** iremos adicionar o objeto **paths** e dentro dele as nossas rotas.
+```typescript
+  "compilerOptions": {
+    "paths": {
+      "@shared/*": ["src/app/shared/*"],
+      "@cliente":["src/app/shared/cliente.module"]
+    },
+```
+A importação dentro de um componente Angular é feita da seguinte forma;
+```typescript
+import { ClienteModel, ClienteService } from "@shared/index"
+import { ClienteModule } from "@Cliente/cliente.module"
+```
 
 ## Ciclo de vida das instancias dos componentes
 
