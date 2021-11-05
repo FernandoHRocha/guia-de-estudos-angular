@@ -89,13 +89,29 @@ A comunicação dentro do angular acontece baseada no estado da aplicação, de 
 
 ### One Way Data Binding
 É possível utilizar uma expressão proveniente do typescript do componente dentro do html. Para tal, utilizamos uma das seguintes sintaxes:
-```typescript
-[valor]="expressão"
 
-{{expressão}}
-
-vinculo-alvo="expressão"
+#### Configurando Propriedades no DOM
+```html
+<input [value]="produto.valor">
 ```
+Temos um vinculo onde o retorno da expressão *"produto.valor"* dentro do typesctipt do componente será atribuido ao valor *value* no DOM do alemento. No caso o valor do input será o mesmo de produto.valor.
+
+#### Configurando as Classes de um DOM
+```html
+<button [class.light]="produto.light"></button>
+```
+Aqui uma classe será aplicada ao elemento *button* caso a propriedade *produto.light* for verdadeira, e caso seu valor altere em tempo de execução a alteração é aplicada ao HTML também.
+
+#### Configurando uma Proriedade do HTML
+```html
+<button>{{produto.nome}}</button>
+```
+O elemento button será renderizado com a cadeia de texto contida em produto.nome.
+```html
+<button>{{produto?.nome}}</button>
+```
+Pode-se empregar o operador de navegação segura **?** para ignorar casos em que a propriedade é *undefined*, assim a aplicação não apresentará erro.
+
 [Documentação Angular - Sintaxe de Vinculos](https://angular.io/guide/binding-syntax)
 
 ### Event Biding
